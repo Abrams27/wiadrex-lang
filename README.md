@@ -1,1 +1,1 @@
-# MIMUW-S6-JPP-interpreter
+# MIMUW-S6-JPP-wiadrex-lang
