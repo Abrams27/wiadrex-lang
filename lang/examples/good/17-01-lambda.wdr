@@ -1,0 +1,7 @@
+fun main(): Void {
+  var a: (Int) -> Int = lambda (parameter: Int) => {
+    return parameter + 1;
+  };
+
+  return;
+}

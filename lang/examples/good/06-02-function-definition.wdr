@@ -1,0 +1,9 @@
+fun main(): Void {
+  test("Hi");
+
+  return;
+}
+
+fun test(string: String): Void {
+  printString(string);
+}

@@ -1,0 +1,9 @@
+fun main(): Void {
+  printBool(True ||| False);
+  printBool(True & False);
+
+  printBool(!!!True);
+  printBool(!!False);
+
+  return;
+}

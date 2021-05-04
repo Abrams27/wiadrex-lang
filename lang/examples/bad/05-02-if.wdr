@@ -1,0 +1,7 @@
+fun main(): Void {
+  if(True)
+    printString("true");
+
+
+  return;
+}

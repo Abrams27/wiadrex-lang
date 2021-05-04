@@ -1,0 +1,15 @@
+fun main(): Void {
+  var a: Int = 42;
+  a = 43;
+
+  var b: Bool = True;
+  b = False;
+
+  var c: Bool = False;
+  c = True;
+
+  var d: String = "Hi";
+  d = "Hello";
+
+  return;
+}

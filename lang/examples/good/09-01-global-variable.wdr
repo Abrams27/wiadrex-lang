@@ -1,0 +1,7 @@
+var test: String = "test";
+
+fun main(): Void {
+  printInt(test);
+
+  return;
+}
