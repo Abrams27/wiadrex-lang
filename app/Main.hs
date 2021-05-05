@@ -1,13 +1,13 @@
 module Main where
 
 import Prelude
-  ( String, (++), unlines
-  , IO, (>>), (>>=), mapM_, putStrLn
-  , FilePath
-  , getContents, readFile )
+  ( ($)
+  , (++), unlines
+  , IO, (>>=), putStrLn
+  , getContents )
 import System.Environment ( getArgs )
-import System.Exit        ( exitFailure, exitSuccess )
-
+import System.Exit        ( exitFailure )
+import Interpreter
 
 
 main :: IO ()
@@ -15,8 +15,8 @@ main = do
   args <- getArgs
   case args of
     ["--help"] -> usage
+    [f]        -> interpretFile f
     []         -> interpretStdin
-    f:[]       -> interpretFile f
     _          -> invalidUsage
 
 
@@ -32,14 +32,7 @@ usage = do
 
 interpretStdin :: IO ()
 interpretStdin = do
-  putStrLn "XDDD"
-  exitSuccess
-
-
-interpretFile :: FilePath -> IO ()
-interpretFile file = do
-  putStrLn "XDDD file"
-  exitSuccess
+  getContents >>= interpret
 
 
 invalidUsage :: IO ()
