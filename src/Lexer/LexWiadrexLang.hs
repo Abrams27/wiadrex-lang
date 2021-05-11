@@ -4,7 +4,7 @@
 
 {-# OPTIONS -fno-warn-incomplete-patterns #-}
 {-# OPTIONS_GHC -w #-}
-module LexWiadrexLang where
+module Lexer.LexWiadrexLang where
 
 import Prelude
 

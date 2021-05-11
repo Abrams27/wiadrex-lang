@@ -4,7 +4,7 @@
 {-# OPTIONS_GHC -XPartialTypeSignatures #-}
 #endif
 {-# OPTIONS_GHC -fno-warn-incomplete-patterns -fno-warn-overlapping-patterns #-}
-module ParWiadrexLang
+module Lexer.ParWiadrexLang
   ( happyError
   , myLexer
   , pProgram
@@ -13,7 +13,7 @@ module ParWiadrexLang
 import Prelude
 
 import qualified Syntax.AbsWiadrexLang as AbsWiadrexLang
-import LexWiadrexLang
+import Lexer.LexWiadrexLang
 import qualified Data.Array as Happy_Data_Array
 import qualified Data.Bits as Bits
 import qualified GHC.Exts as Happy_GHC_Exts

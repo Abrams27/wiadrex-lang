@@ -17,8 +17,8 @@ import System.Exit        ( exitFailure, exitSuccess )
 import Control.Monad      ( when )
 
 import Syntax.AbsWiadrexLang   ()
-import LexWiadrexLang   ( Token )
-import ParWiadrexLang   ( pProgram, myLexer )
+import Lexer.LexWiadrexLang   ( Token )
+import Lexer.ParWiadrexLang   ( pProgram, myLexer )
 import PrintWiadrexLang ( Print, printTree )
 import SkelWiadrexLang  ()
 
