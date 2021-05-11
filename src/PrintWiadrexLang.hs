@@ -165,7 +165,6 @@ instance Print (AbsWiadrexLang.Type' a) where
     AbsWiadrexLang.TString _ -> prPrec i 0 (concatD [doc (showString "String")])
     AbsWiadrexLang.TBool _ -> prPrec i 0 (concatD [doc (showString "Bool")])
     AbsWiadrexLang.TVoid _ -> prPrec i 0 (concatD [doc (showString "Void")])
-    AbsWiadrexLang.TRec _ id_ -> prPrec i 0 (concatD [prt 0 id_])
     AbsWiadrexLang.TFun _ types type_ -> prPrec i 0 (concatD [doc (showString "("), prt 0 types, doc (showString ")"), doc (showString "->"), prt 0 type_])
   prtList _ [] = concatD []
   prtList _ [x] = concatD [prt 0 x]
@@ -189,8 +188,7 @@ instance Print (AbsWiadrexLang.Expr' a) where
     AbsWiadrexLang.ERel _ expr1 relop expr2 -> prPrec i 2 (concatD [prt 2 expr1, prt 0 relop, prt 3 expr2])
     AbsWiadrexLang.EAnd _ expr1 expr2 -> prPrec i 1 (concatD [prt 2 expr1, doc (showString "&&"), prt 1 expr2])
     AbsWiadrexLang.EOr _ expr1 expr2 -> prPrec i 0 (concatD [prt 1 expr1, doc (showString "||"), prt 0 expr2])
-    AbsWiadrexLang.ENew _ id_ exprs -> prPrec i 0 (concatD [doc (showString "new"), prt 0 id_, doc (showString "("), prt 0 exprs, doc (showString ")")])
-    AbsWiadrexLang.ELambda _ args block -> prPrec i 0 (concatD [doc (showString "lambda"), doc (showString "("), prt 0 args, doc (showString ")"), doc (showString "=>"), prt 0 block])
+    AbsWiadrexLang.ELambda _ args type_ block -> prPrec i 0 (concatD [doc (showString "lambda"), doc (showString "("), prt 0 args, doc (showString ")"), doc (showString ":"), prt 0 type_, doc (showString "=>"), prt 0 block])
   prtList _ [] = concatD []
   prtList _ [x] = concatD [prt 0 x]
   prtList _ (x:xs) = concatD [prt 0 x, doc (showString ","), prt 0 xs]

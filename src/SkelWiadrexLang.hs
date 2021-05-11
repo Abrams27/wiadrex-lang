@@ -56,7 +56,6 @@ transType x = case x of
   AbsWiadrexLang.TString _ -> failure x
   AbsWiadrexLang.TBool _ -> failure x
   AbsWiadrexLang.TVoid _ -> failure x
-  AbsWiadrexLang.TRec _ ident -> failure x
   AbsWiadrexLang.TFun _ types type_ -> failure x
 
 transExpr :: Show a => AbsWiadrexLang.Expr' a -> Result
@@ -74,8 +73,7 @@ transExpr x = case x of
   AbsWiadrexLang.ERel _ expr1 relop expr2 -> failure x
   AbsWiadrexLang.EAnd _ expr1 expr2 -> failure x
   AbsWiadrexLang.EOr _ expr1 expr2 -> failure x
-  AbsWiadrexLang.ENew _ ident exprs -> failure x
-  AbsWiadrexLang.ELambda _ args block -> failure x
+  AbsWiadrexLang.ELambda _ args type_ block -> failure x
 
 transAddOp :: Show a => AbsWiadrexLang.AddOp' a -> Result
 transAddOp x = case x of

@@ -58,8 +58,6 @@ TBool.     Type ::= "Bool" ;
 
 TVoid.     Type ::= "Void" ;
 
-TRec.      Type ::= Ident ;
-
 TFun.      Type ::= "(" [Type] ")" "->" Type;
 
 separator  Type "," ;
@@ -93,9 +91,7 @@ EAnd.      Expr1 ::= Expr2 "&&" Expr1 ;
 
 EOr.       Expr ::= Expr1 "||" Expr ;
 
-ENew.      Expr ::= "new" Ident "(" [Expr] ")" ;
-
-ELambda.   Expr ::= "lambda" "(" [Arg] ")" "=>" Block ;
+ELambda.   Expr ::= "lambda" "(" [Arg] ")" ":" Type "=>" Block ;
 
 coercions  Expr 6 ;
 

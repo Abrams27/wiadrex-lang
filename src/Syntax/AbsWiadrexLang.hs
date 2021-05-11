@@ -59,7 +59,6 @@ data Type' a
     | TString a
     | TBool a
     | TVoid a
-    | TRec a Ident
     | TFun a [Type' a] (Type' a)
   deriving (C.Eq, C.Ord, C.Show, C.Read, C.Functor, C.Foldable, C.Traversable)
 
@@ -78,8 +77,7 @@ data Expr' a
     | ERel a (Expr' a) (RelOp' a) (Expr' a)
     | EAnd a (Expr' a) (Expr' a)
     | EOr a (Expr' a) (Expr' a)
-    | ENew a Ident [Expr' a]
-    | ELambda a [Arg' a] (Block' a)
+    | ELambda a [Arg' a] (Type' a) (Block' a)
   deriving (C.Eq, C.Ord, C.Show, C.Read, C.Functor, C.Foldable, C.Traversable)
 
 type AddOp = AddOp' BNFC'Position
@@ -151,7 +149,6 @@ instance HasPosition Type where
     TString p -> p
     TBool p -> p
     TVoid p -> p
-    TRec p _ -> p
     TFun p _ _ -> p
 
 instance HasPosition Expr where
@@ -169,8 +166,7 @@ instance HasPosition Expr where
     ERel p _ _ _ -> p
     EAnd p _ _ -> p
     EOr p _ _ -> p
-    ENew p _ _ -> p
-    ELambda p _ _ -> p
+    ELambda p _ _ _ -> p
 
 instance HasPosition AddOp where
   hasPosition = \case

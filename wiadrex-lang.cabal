@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3eb1aefd4bead5870e08eff31c469294128439f79dd1d806db55fd81482a74b2
+-- hash: 062474a999f683f8eb6d19c48bf4a40a63e10c51dbba9ae82fecbcdd188c0fa8
 
 name:           wiadrex-lang
 version:        0.1.0.0
@@ -28,17 +28,23 @@ library
       Interpreter
       Lexer.LexWiadrexLang
       Lexer.ParWiadrexLang
+      LexWiadrexLang
       PrintWiadrexLang
       SkelWiadrexLang
       Syntax.AbsWiadrexLang
       TestWiadrexLang
+      Typechecker.Exceptions
+      Typechecker.Typechecker
+      Typechecker.Types
   other-modules:
       Paths_wiadrex_lang
   hs-source-dirs:
       src
   build-depends:
-      array ==0.5.4.0
+      array
     , base >=4.7 && <5
+    , containers
+    , mtl
   default-language: Haskell2010
 
 executable interpreter
@@ -49,8 +55,10 @@ executable interpreter
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      array ==0.5.4.0
+      array
     , base >=4.7 && <5
+    , containers
+    , mtl
     , wiadrex-lang
   default-language: Haskell2010
 
@@ -63,7 +71,9 @@ test-suite interpreter-test
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      array ==0.5.4.0
+      array
     , base >=4.7 && <5
+    , containers
+    , mtl
     , wiadrex-lang
   default-language: Haskell2010

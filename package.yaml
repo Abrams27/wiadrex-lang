@@ -18,7 +18,9 @@ description:         Please see the README on GitHub at <https://github.com/Abra
 
 dependencies:
 - base >= 4.7 && < 5
-- array == 0.5.4.0
+- array >= 0
+- containers >= 0
+- mtl >= 0
 
 library:
   source-dirs: src
