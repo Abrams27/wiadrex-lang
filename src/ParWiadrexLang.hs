@@ -12,7 +12,7 @@ module ParWiadrexLang
 
 import Prelude
 
-import qualified AbsWiadrexLang
+import qualified Syntax.AbsWiadrexLang as AbsWiadrexLang
 import LexWiadrexLang
 import qualified Data.Array as Happy_Data_Array
 import qualified Data.Bits as Bits

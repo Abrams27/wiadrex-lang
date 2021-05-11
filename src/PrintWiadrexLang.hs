@@ -21,7 +21,7 @@ import Prelude
   , all, dropWhile, elem, foldr, id, map, null, replicate, shows, span
   )
 import Data.Char ( Char, isSpace )
-import qualified AbsWiadrexLang
+import qualified Syntax.AbsWiadrexLang as AbsWiadrexLang
 
 -- | The top-level printing method.
 

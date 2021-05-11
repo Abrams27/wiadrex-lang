@@ -9,7 +9,7 @@
 
 -- | The abstract syntax of language wiadrex-lang.
 
-module AbsWiadrexLang where
+module Syntax.AbsWiadrexLang where
 
 import Prelude (Integer, String)
 import qualified Prelude as C

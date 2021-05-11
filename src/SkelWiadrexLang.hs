@@ -5,7 +5,7 @@
 module SkelWiadrexLang where
 
 import Prelude (($), Either(..), String, (++), Show, show)
-import qualified AbsWiadrexLang
+import qualified Syntax.AbsWiadrexLang as AbsWiadrexLang
 
 type Err = Either String
 type Result = Err String
