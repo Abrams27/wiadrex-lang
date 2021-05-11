@@ -22,7 +22,6 @@ import SkelWiadrexLang  ()
 
 
 type Err        = Either String
-type ParseFun a = [Token] -> Err a
 
 
 -- TODO: type update
