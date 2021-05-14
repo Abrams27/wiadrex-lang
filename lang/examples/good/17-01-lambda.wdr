@@ -1,5 +1,5 @@
 fun main(): Void {
-  var a: (Int) -> Int = lambda (parameter: Int) => {
+  var a: (Int) -> Int = lambda (parameter: Int): Int => {
     return parameter + 1;
   };
 

@@ -6,4 +6,6 @@ fun main(): Void {
 
 fun test(var string: String): Void {
   printString(string);
+
+  return;
 }

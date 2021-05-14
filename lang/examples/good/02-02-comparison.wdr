@@ -1,23 +1,23 @@
 fun main(): Void {
-  printInt(4 <= 2);
-  printInt(4 < 2);
+  printBool(4 <= 2);
+  printBool(4 < 2);
 
-  printInt(4 >= 2);
-  printInt(4 > 2);
+  printBool(4 >= 2);
+  printBool(4 > 2);
 
-  printInt(4 == 2);
-  printInt(4 == 4);
-  printInt(4 != 2);
+  printBool(4 == 2);
+  printBool(4 == 4);
+  printBool(4 != 2);
 
-  printInt((1 + 1) * 2 <= 2);
-  printInt((1 + 1) * 2 < 2);
+  printBool((1 + 1) * 2 <= 2);
+  printBool((1 + 1) * 2 < 2);
 
-  printInt((1 + 1) * 2 >= 2);
-  printInt((1 + 1) * 2 > 2);
+  printBool((1 + 1) * 2 >= 2);
+  printBool((1 + 1) * 2 > 2);
 
-  printInt((1 + 1) * 2 == 2);
-  printInt((1 + 1) * 2 == 4);
-  printInt((1 + 1) * 2 != 2);
+  printBool((1 + 1) * 2 == 2);
+  printBool((1 + 1) * 2 == 4);
+  printBool((1 + 1) * 2 != 2);
 
   return;
 }

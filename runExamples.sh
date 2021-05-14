@@ -43,11 +43,11 @@ for example in $examples_path/bad/*.wdr; do
   ((all_bad=all_bad+1))
 done
 
-good_percentage=$((passed_good / all_good * 100))
-bad_percentage=$((passed_bad / all_bad * 100))
+good_percentage=$((passed_good * 100 / all_good))
+bad_percentage=$((passed_bad * 100 / all_bad))
 all_passed=$((passed_good + passed_bad))
 all=$((all_good + all_bad))
-all_percentage=$(((passed_good + passed_bad) / (all_good + all_bad) * 100))
+all_percentage=$(((passed_good + passed_bad) * 100 / (all_good + all_bad)))
 echo -e "================================================================="
 echo -e "Good passed: $passed_good / $all_good ($good_percentage %)"
 echo -e "Bad passed:  $passed_bad / $all_bad ($bad_percentage %)"

@@ -2,6 +2,5 @@ fun main(): Void {
   while(True)
     printString("infinity");
 
-
   return;
 }

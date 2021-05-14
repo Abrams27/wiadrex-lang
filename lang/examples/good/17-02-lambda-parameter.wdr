@@ -1,5 +1,5 @@
 fun main(): Void {
-  printInt(test(lambda (a: Int) => { return a + 1; }));
+  printInt(test(lambda (a: Int): Int => { return a + 1; }));
 
   return;
 }

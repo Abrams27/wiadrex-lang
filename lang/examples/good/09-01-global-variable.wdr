@@ -1,7 +1,7 @@
 var test: String = "test";
 
 fun main(): Void {
-  printInt(test);
+  printString(test);
 
   return;
 }

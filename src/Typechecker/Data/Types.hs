@@ -1,4 +1,4 @@
-module Typechecker.Types where
+module Typechecker.Data.Types where
 
 import Prelude
 import Syntax.AbsWiadrexLang
@@ -37,3 +37,21 @@ fromType (TFun _ argumentsTypes returnType) = RTFun rawArgumentsTypes rawReturnT
   where
     rawArgumentsTypes = map fromType argumentsTypes
     rawReturnType = fromType returnType
+
+
+
+fromFunction :: [Arg] -> Type -> RawType
+fromFunction arguments returnType = RTFun rawArgumentsTypes rawReturnType 
+  where
+    rawArgumentsTypes = fromArgs arguments
+    rawReturnType = fromType returnType
+
+
+fromArgs :: [Arg] -> [RawType]
+fromArgs = map fromArg
+
+fromArg :: Arg -> RawType
+fromArg (PArg _ _ argType) = fromType argType
+fromArg (PArgVar _ _ argType) = fromType argType
+
+
