@@ -1,0 +1,8 @@
+var a: Int = b;
+var b: Int = 1;
+
+fun main(): Void {
+  printInt(a);
+
+  return;
+}

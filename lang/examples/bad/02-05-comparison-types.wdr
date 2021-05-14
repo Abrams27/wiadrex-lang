@@ -1,0 +1,5 @@
+fun main(): Void {
+  printBool(True <= 1);
+
+  return;
+}
