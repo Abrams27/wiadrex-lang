@@ -1,0 +1,11 @@
+fun main(): Void {
+  var c: () -> Void = lambda (): Void => {
+    var a: String = "test";
+
+    return;
+  };
+
+  printString(a);
+
+  return;
+}

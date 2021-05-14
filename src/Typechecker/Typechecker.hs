@@ -82,8 +82,10 @@ instance Typechecker Stmt where
 
   checkTypeM _ (SEmpty _) = pure ()
 
-  checkTypeM expectedReturnType (SBStmt _ block) =
+  checkTypeM expectedReturnType (SBStmt _ block) = do
+    env <- get
     checkTypeM expectedReturnType block
+    put env
 
   checkTypeM expectedReturnType (SInit _ init) =
     checkTypeM expectedReturnType init
