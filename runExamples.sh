@@ -12,7 +12,7 @@ for example in $examples_path/good/*.wdr; do
   echo -e "-----------------------------------------------------------------"
   echo -e "Running $example:\n"
   echo -e "------------------------------"
-  cat "$example" | ./$interpreter
+  ./$interpreter "$example"
 
   if [[ $? -eq 0 ]]; then
     ((passed_good=passed_good+1))
@@ -32,7 +32,7 @@ for example in $examples_path/bad/*.wdr; do
   echo -e "-----------------------------------------------------------------"
   echo -e "Running $example:\n"
   echo -e "------------------------------"
-  cat "$example" | ./$interpreter
+  ./$interpreter "$example"
 
   if [[ $? -eq 1 ]]; then
     ((passed_bad=passed_bad+1))
