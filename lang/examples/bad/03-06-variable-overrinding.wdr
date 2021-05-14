@@ -1,0 +1,8 @@
+var a: Int = 1;
+var a: String = "test";
+
+fun main(): Void {
+  printString(a);
+
+  return;
+}

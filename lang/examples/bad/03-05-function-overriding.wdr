@@ -1,0 +1,17 @@
+fun main(): Void {
+  test("Hi");
+
+  return;
+}
+
+fun test(a: String): Void {
+  printString(a);
+
+  return;
+}
+
+fun test(): Void {
+  printString("string");
+
+  return;
+}

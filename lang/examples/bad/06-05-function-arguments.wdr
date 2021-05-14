@@ -1,0 +1,11 @@
+fun main(): Void {
+  test("Hi", 1);
+
+  return;
+}
+
+fun test(a: String, a: Int): Void {
+  printString(a);
+
+  return;
+}
