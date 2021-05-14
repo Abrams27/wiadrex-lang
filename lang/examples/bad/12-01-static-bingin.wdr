@@ -1,0 +1,12 @@
+fun main(): Void {
+  var a: Int = 1;
+  var a: String = "b";
+
+  fun test(): Int {
+    return a;
+  }
+
+  printInt(test());
+
+  return;
+}
