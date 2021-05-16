@@ -15,42 +15,46 @@
     \maketitle
 
     Wiadrex lang jest lekko ulepszoną wersją Latte (Latte++), z małymi zapożyczeniami ze Scali.
-    
+
     Dokładniejszy opis punktów z tabelki:
-    
+
     \begin{enumerate}
         \item
             Zawiera 3 typy: Int, Bool i String - jak w Latte.
-            
+
         \item
             Arytmetyka i operacje jak w Latte.
-        
+
         \item
             Tworzenie nowych zmiennych odbywa się przy użyciu operacji: `var <nazwa zmiennej>: <typ zmiennej> = <wartosc zmiennej>`.
-            
+
         \item
             Wypisywanie odbywa się przy pomocy `printInt`, `printBool` oraz `printString`, odpowiednio dla typów.
-            
+
         \item
             Bloki przy `while` i `if` / `if/else` *muszą* być otoczone nawiasami \{\} - brak nawiasów jest brzydki i utrudniający prace programisty, więc język to wymusza.
-            
+
         \item
             Funkcje  tworzy się następująco: `fun <nazwa funkcji>(<lista argumentów odzielone przecinkiem>): <zwracany typ> {<cialo funkcji>}`
-            
-        \item 
-            Argumenty funkcji są postaci: `<nazwa argumentu>: <typ argumentu>` taki argument jest przekazywany przez wartość. Aby przekazywać argumenty przez referencje trzeba dodać słówko kluczowe `var` przez zmienną: `var <nazwa argumentu>: <typ argumentu>`.
-            
+
+        \item
+            Argumenty funkcji są postaci: `<nazwa argumentu>: <typ argumentu>` taki argument jest przekazywany przez wartość. Aby przekazywać argumenty przez referencje trzeba dodać 
+
         \setItemnumber{11}
         \item
             Funkcje tak jak w opisie wyżej, mogą zwracać wartość danego typu.
-            
-        \setItemnumber{14}
+
+        \setItemnumber{12}
         \item
-            Można tworzyć rekordy (podobnie jak case class w Scali): `record <nazwa rekordu>(<pola rekordu>)`, gdzie pola rekordu są takie same jak argumenty funkcji. Nowe rekordy tworzy się przy użyciu operatora `new`: `new <nazwa rekordu>(<argumenty rekordu>)`.
-        
+            Język jest statycznie typowany.
+
+        \setItemnumber{13}
+        \item
+            Można tworzyć zagnieżdzone funkcje ze statycznym wiązaniem.
+
         \setItemnumber{17}
         \item
-            Zmienne mogą być typu funkcyjnego, maja wtedy typ: `(<lista typów argumentów>) -> <zwracany typ>`. Można tworzyć lambdy: `lambda <argumenty jak w funkcji> => {<ciało>}`
+            Zmienne mogą być typu funkcyjnego, maja wtedy typ: `(<lista typów argumentów>) -> <zwracany typ>`. Można tworzyć lambdy: `lambda <argumenty jak w funkcji> : <zwracany typ>=> {<ciało>}`
     \end{enumerate}
     
     Pozostałe zaznaczone punkty, które nie zostały tutaj opisane są standardowe.
