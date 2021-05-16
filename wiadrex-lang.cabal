@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 36a3b7213adf2e5edc6d2fe180ad343dce96c1af4c793ec5e70bbae6d55241cb
+-- hash: 62290f3294761da50921a401c998d39c37f7842683f670a247c26d9992c46044
 
 name:           wiadrex-lang
 version:        0.1.0.0
@@ -60,7 +60,6 @@ executable interpreter
       Paths_wiadrex_lang
   hs-source-dirs:
       app
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       array
     , base >=4.7 && <5
@@ -76,7 +75,6 @@ test-suite interpreter-test
       Paths_wiadrex_lang
   hs-source-dirs:
       test
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       array
     , base >=4.7 && <5

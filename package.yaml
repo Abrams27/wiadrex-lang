@@ -29,10 +29,6 @@ executables:
   interpreter:
     main:                Main.hs
     source-dirs:         app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
     dependencies:
     - wiadrex-lang
 
@@ -40,9 +36,5 @@ tests:
   interpreter-test:
     main:                Spec.hs
     source-dirs:         test
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
     dependencies:
     - wiadrex-lang
