@@ -12,4 +12,4 @@ make
 ```
 
 ## Description and examples
-More info in the `lang/opis-wiadrex-lang.pdf` and examples in `lang/examples`.
+More info in the `lang/opis-wiadrex-lang.pdf` file and examples in `lang/examples`.
