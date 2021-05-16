@@ -1,11 +1,10 @@
 {-# LANGUAGE RecordWildCards #-}
-{-# LANGUAGE RecordWildCards #-}
 module Evaluator.Data.Persistence where
 
-import Prelude
-import Syntax.AbsWiadrexLang
-import Data.Maybe
-import qualified Data.Map as M
+import qualified Data.Map              as M
+import           Data.Maybe
+import           Prelude
+import           Syntax.AbsWiadrexLang
 
 
 
@@ -37,11 +36,11 @@ mapVBools f (VBool val1) (VBool val2) = VBool $ f val1 val2
 
 isTrue :: Value -> Bool
 isTrue (VBool True) = True
-isTrue _ = False
+isTrue _            = False
 
 isIntEqual :: Value -> Integer -> Bool
 isIntEqual (VInt val) expectedVal = val == expectedVal
-isIntEqual _ _ = False
+isIntEqual _ _                    = False
 
 getFunctionEnv :: Value -> Env
 getFunctionEnv (VFun _ _ env) = env
@@ -54,19 +53,19 @@ getFunctionBlock (VFun _ block _) = block
 
 isDummy :: Value -> Bool
 isDummy Dummy = True
-isDummy _ = False
+isDummy _     = False
 
 
 showValue :: Value -> String
-showValue (VInt val) = show val
-showValue (VBool val) = show val
+showValue (VInt val)    = show val
+showValue (VBool val)   = show val
 showValue (VString val) = val
-showValue _ = ""
+showValue _             = ""
 
 
 
 data EvaluatorPersistence = EvaluatorPersistence
-  { env :: Env
+  { env   :: Env
   , store :: Store
   }
 
@@ -74,7 +73,7 @@ data EvaluatorPersistence = EvaluatorPersistence
 type Location = Int
 
 
-data Env = Env
+newtype Env = Env
   { _env :: M.Map Ident Location
   }
 
@@ -87,7 +86,7 @@ putEnvLocation name location Env{..} =
 
 
 data Store = Store
-  { _store :: M.Map Location Value
+  { _store        :: M.Map Location Value
   , _lastLocation :: Int
   }
 
@@ -105,7 +104,7 @@ putStoreValue value Store{..} =
   where
     newLocation = _lastLocation + 1
     newStore = M.insert newLocation value _store
- 
+
 
 getValue :: Ident -> EvaluatorPersistence -> Value
 getValue name EvaluatorPersistence{..} = getStoreValue (getEnvLocation name env) store
@@ -156,11 +155,11 @@ isReturnNotDefined pers = isDummy $ getValue returnLabel pers
 
 
 
-emptyEnv = Env 
+emptyEnv = Env
   { _env = M.empty
   }
 
-emptyStore = Store 
+emptyStore = Store
   { _store = M.empty
   , _lastLocation = 0
   }

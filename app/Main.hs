@@ -1,13 +1,10 @@
 module Main where
 
-import Prelude
-  ( ($)
-  , (++), unlines
-  , IO, (>>=), putStrLn
-  , getContents )
-import System.Environment ( getArgs )
-import System.Exit        ( exitFailure )
-import Interpreter
+import           Interpreter
+import           Prelude            (IO, getContents, putStrLn, unlines, ($),
+                                     (>>=))
+import           System.Environment (getArgs)
+import           System.Exit        (exitFailure)
 
 
 main :: IO ()

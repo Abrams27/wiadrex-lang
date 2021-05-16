@@ -1,6 +1,7 @@
+{-# LANGUAGE FlexibleInstances #-}
 module Evaluator.Data.Exceptions where
 
-import Syntax.AbsWiadrexLang
+import           Syntax.AbsWiadrexLang
 
 
 type RuntimeException = RuntimeException' BNFC'Position
@@ -11,16 +12,19 @@ data RuntimeException' a
   | DivideByZeroException a
 
 
-instance (Show a) => Show (RuntimeException' a) where
 
-  show (UnknownRuntimeException position) = concat [
-    "RUNTIME EXCEPTION: Unknown exception! At: ", show position
-    ]
+instance Show RuntimeException where
 
-  show (InvalidReferenceFunctionArgumentAplicationException position) = concat [
-    "RUNTIME EXCEPTION: Invalid reference function argument! Argument has to be variable! At: ", show position
-    ]
+  show (UnknownRuntimeException position) =
+    "RUNTIME EXCEPTION: Unknown exception! At " ++ showPos position
 
-  show (DivideByZeroException position) = concat [
-    "RUNTIME EXCEPTION: Divide by zero! At: ", show position
-    ]
+  show (InvalidReferenceFunctionArgumentAplicationException position) =
+    "RUNTIME EXCEPTION: Invalid reference function argument! Argument has to be variable! At " ++ showPos position
+
+  show (DivideByZeroException position) =
+    "RUNTIME EXCEPTION: Divide by zero! At " ++ showPos position
+
+
+showPos :: BNFC'Position -> String
+showPos (Just (line, column)) = concat ["line ", show line, ", column ", show column]
+showPos _ = "unknow"

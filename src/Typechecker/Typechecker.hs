@@ -1,25 +1,25 @@
+{-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE TypeSynonymInstances #-}
-{-# LANGUAGE FlexibleInstances #-}
 module Typechecker.Typechecker
   ( checkType
   ) where
 
-import Prelude
-import Control.Monad.Reader
-import Control.Monad.Except
-import Control.Monad.State
-import Typechecker.Data.Environment
-import Typechecker.Data.Exceptions
-import Typechecker.Data.Types
-import Typechecker.Monads
-import Syntax.AbsWiadrexLang
-import qualified Typechecker.Utils.Typegetter as TGU
+import           Control.Monad.Except
+import           Control.Monad.Reader
+import           Control.Monad.State
+import           Prelude
+import           Syntax.AbsWiadrexLang
+import           Typechecker.Data.Environment
+import           Typechecker.Data.Exceptions
+import           Typechecker.Data.Types
+import           Typechecker.Monads
+import qualified Typechecker.Utils.Common      as CU
 import qualified Typechecker.Utils.Typechecker as TCU
-import qualified Typechecker.Utils.Common as CU
+import qualified Typechecker.Utils.Typegetter  as TGU
 
 
 checkType :: Program -> Either TypecheckingException ()
-checkType program = 
+checkType program =
   runExcept $ evalStateT (checkTypeM Nothing program) emptyEnv
 
 
@@ -29,17 +29,6 @@ instance Typechecker Program where
       TCU.expectValidInitsNamesOrThrowM position inits
 
       mapM_ (checkTypeM Nothing) inits
-
-    where
-      updateEnvWithFunctionInitM :: Init -> TypecheckerM
-      updateEnvWithFunctionInitM init = do
-        env <- get
-        put $ updateEnvWithFunctionInit env init
-
-      updateEnvWithFunctionInit :: Env -> Init -> Env
-      updateEnvWithFunctionInit env (IFnDef _ name arguments returnType _) =
-        updateType env name (fromFunction arguments returnType)
-      updateEnvWithFunctionInit env _ = env
 
 
 
@@ -60,7 +49,7 @@ instance Typechecker Init where
     blockEnv <- get
     TCU.assertOrThrowM (hasReturnStatementOccured blockEnv) (NoReturnStatementException position)
 
-    put $ envWithFunction
+    put envWithFunction
 
 
   checkTypeM _ (IInit position name exprType expr) = do
@@ -93,7 +82,7 @@ instance Typechecker Stmt where
     env <- get
     case getType env name of
       Just rawType -> TCU.expectTypeOrThrowM position env rawType expr
-      Nothing -> throwError $ UndefinedSymbolException position name
+      Nothing      -> throwError $ UndefinedSymbolException position name
 
   checkTypeM _ (SIncr position name) =
     TCU.expectSymbolTypeOrThrowM position RTInt name
@@ -189,14 +178,14 @@ instance Typegetter Expr where
       let argumentsWithTypes = CU.getArgumentsWithTypes arguments
 
       env <- ask
-      local (\env -> updateTypes env argumentsWithTypes) (runLocalCheckM arguments returnType block)
+      local (`updateTypes` argumentsWithTypes) (runLocalCheckM arguments returnType block)
 
     where
       runLocalCheckM :: Typechecker a => [Arg] -> Type -> a -> TypegetterM
       runLocalCheckM arguments returnType block = do
         let rawReturnType = fromType returnType
         let functionType = fromFunction arguments returnType
-        
+
         env <- ask
         TGU.checkTypeOrThrowM env (Just rawReturnType) block checkLambdaBodyM
         pure functionType
@@ -206,4 +195,3 @@ instance Typegetter Expr where
         checkTypeM expectedType block
         blockEnv <- get
         TCU.assertOrThrowM (hasReturnStatementOccured blockEnv) (NoReturnStatementException position)
-

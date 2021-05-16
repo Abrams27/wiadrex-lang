@@ -9,16 +9,16 @@ module Typechecker.Utils.Typechecker
   , assertOrThrowM
   ) where
 
-import Prelude
-import Control.Monad.State
-import Control.Monad.Reader
-import Control.Monad.Except
-import Typechecker.Data.Environment
-import Typechecker.Data.Exceptions
-import Typechecker.Data.Types
-import Typechecker.Monads
-import Syntax.AbsWiadrexLang
-import qualified Typechecker.Utils.Common as CU
+import           Control.Monad.Except
+import           Control.Monad.Reader
+import           Control.Monad.State
+import           Prelude
+import           Syntax.AbsWiadrexLang
+import           Typechecker.Data.Environment
+import           Typechecker.Data.Exceptions
+import           Typechecker.Data.Types
+import           Typechecker.Monads
+import qualified Typechecker.Utils.Common     as CU
 import qualified Typechecker.Utils.Typegetter as TGU
 
 
@@ -28,7 +28,7 @@ expectTypeOrThrowM position env expectedType expr = do
   parseTypecheckResultM typecheckResult
 
 expectTypeM :: Typegetter a => BNFC'Position -> RawType -> a -> Env -> Either TypecheckingException ()
-expectTypeM position expectedType expr env = 
+expectTypeM position expectedType expr env =
   runExcept $ runReaderT (TGU.expectTypeOrThrowM position expectedType expr) env
 
 
@@ -40,16 +40,15 @@ expectSymbolTypeOrThrowM position expectedType name = do
     Nothing -> throwError $ UndefinedSymbolException position name
 
 
--- -- TODO ugly error mapping
 parseReturnTypecheckResultM :: BNFC'Position -> RawType -> Either TypecheckingException () -> TypecheckerM
 parseReturnTypecheckResultM _ _ (Right _) = pure ()
 parseReturnTypecheckResultM position expectedType (Left exception) =
-  throwError $ exception
+  throwError exception
 
 parseTypecheckResultM :: Either TypecheckingException () -> TypecheckerM
 parseTypecheckResultM (Right _) = pure ()
 parseTypecheckResultM (Left exception) =
-  throwError $ exception
+  throwError exception
 
 
 expectValidInitsNamesOrThrowM :: BNFC'Position -> [Init] -> TypecheckerM
@@ -65,10 +64,10 @@ expectValidFunctionArgumentsOrThrowM position arguments = do
 
 
 assertTypeOrThrowM :: Eq a => a -> a -> TypecheckingException -> TypecheckerM
-assertTypeOrThrowM expectedType actualType exception = assertOrThrowM isValidType exception
+assertTypeOrThrowM expectedType actualType = assertOrThrowM isValidType
   where
     isValidType = expectedType == actualType
 
 assertOrThrowM :: Bool -> TypecheckingException -> TypecheckerM
-assertOrThrowM True _ = pure ()
+assertOrThrowM True _          = pure ()
 assertOrThrowM False exception = throwError exception

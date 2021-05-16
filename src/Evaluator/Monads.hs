@@ -1,11 +1,11 @@
 module Evaluator.Monads where
 
-import Prelude
-import Control.Monad.Except
-import Control.Monad.State
-import Evaluator.Data.Exceptions
-import Evaluator.Data.Persistence
-import Syntax.AbsWiadrexLang
+import           Control.Monad.Except
+import           Control.Monad.State
+import           Evaluator.Data.Exceptions
+import           Evaluator.Data.Persistence
+import           Prelude
+import           Syntax.AbsWiadrexLang
 
 
 type EvaluatorM = EvaluatorM' Value

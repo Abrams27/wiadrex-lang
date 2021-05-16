@@ -1,13 +1,13 @@
 module Typechecker.Monads where
 
-import Prelude
-import Typechecker.Data.Environment
-import Typechecker.Data.Exceptions
-import Typechecker.Data.Types
-import Control.Monad.Reader
-import Control.Monad.Except
-import Control.Monad.State
-import Syntax.AbsWiadrexLang
+import           Control.Monad.Except
+import           Control.Monad.Reader
+import           Control.Monad.State
+import           Prelude
+import           Syntax.AbsWiadrexLang
+import           Typechecker.Data.Environment
+import           Typechecker.Data.Exceptions
+import           Typechecker.Data.Types
 
 type TypecheckerM = TypecheckerM' ()
 type TypecheckerM' a = StateT Env (Except TypecheckingException) a

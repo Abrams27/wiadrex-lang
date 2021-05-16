@@ -1,13 +1,13 @@
 module Evaluator.Utils.Expr where
 
-import Prelude
-import Evaluator.Data.Persistence
-import Evaluator.Data.Exceptions
-import Evaluator.Monads
-import Control.Monad.State
-import Control.Monad.Except
-import Syntax.AbsWiadrexLang
-import Evaluator.Buildin.Functions
+import           Control.Monad.Except
+import           Control.Monad.State
+import           Evaluator.Buildin.Functions
+import           Evaluator.Data.Exceptions
+import           Evaluator.Data.Persistence
+import           Evaluator.Monads
+import           Prelude
+import           Syntax.AbsWiadrexLang
 
 
 evalVIntExpr :: Evaluator a => (Integer -> Integer -> Integer) -> a -> a -> EvaluatorM
@@ -31,21 +31,19 @@ evalVBoolExpr f expr1 expr2 = do
 
 
 getArgLocation :: Expr -> EvaluatorM' Location
-getArgLocation (EVar _ name) = do
-  pers <- get
-  pure $ getLocation name pers
-getArgLocation _ = pure (-1)
+getArgLocation (EVar _ name) = gets $ getLocation name
+getArgLocation _             = pure (-1)
 
 
 putArgsToPers :: (Arg, Value, Location) -> EvaluatorM
-putArgsToPers ((PArg _ name _), value, _) = do
+putArgsToPers (PArg _ name _, value, _) = do
   modify $ putValue name value
   pure Dummy
 
-putArgsToPers ((PArgVar position _ _), _, (-1)) =
+putArgsToPers (PArgVar position _ _, _, -1) =
   throwError $ InvalidReferenceFunctionArgumentAplicationException position
 
-putArgsToPers ((PArgVar _ name _), _, location) = do
+putArgsToPers (PArgVar _ name _, _, location) = do
   modify $ putLocation name location
   pure Dummy
 

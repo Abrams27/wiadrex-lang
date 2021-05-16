@@ -1,12 +1,12 @@
 module Evaluator.Buildin.Functions where
 
-import Prelude
-import Evaluator.Data.Persistence
-import Evaluator.Data.Exceptions
-import Evaluator.Monads
-import Control.Monad.State
-import Control.Monad.Except
-import Syntax.AbsWiadrexLang
+import           Control.Monad.Except
+import           Control.Monad.State
+import           Evaluator.Data.Exceptions
+import           Evaluator.Data.Persistence
+import           Evaluator.Monads
+import           Prelude
+import           Syntax.AbsWiadrexLang
 
 
 allBuildinFunctions = ["printInt", "printBool", "printString"]

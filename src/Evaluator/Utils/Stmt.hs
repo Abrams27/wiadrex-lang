@@ -1,10 +1,10 @@
 module Evaluator.Utils.Stmt where
 
-import Prelude
-import Evaluator.Data.Persistence
-import Evaluator.Monads
-import Control.Monad.State
-import Syntax.AbsWiadrexLang
+import           Control.Monad.State
+import           Evaluator.Data.Persistence
+import           Evaluator.Monads
+import           Prelude
+import           Syntax.AbsWiadrexLang
 
 
 evalVIntStmt :: (Integer -> Integer) -> Ident -> EvaluatorM

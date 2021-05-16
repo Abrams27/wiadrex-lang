@@ -1,18 +1,18 @@
 {-# LANGUAGE RecordWildCards #-}
 module Typechecker.Data.Environment where
 
-import Prelude
-import Typechecker.Data.Types
-import Syntax.AbsWiadrexLang
-import qualified Data.Map as M
+import qualified Data.Map               as M
+import           Prelude
+import           Syntax.AbsWiadrexLang
+import           Typechecker.Data.Types
 
 
 data Env = Env
-  { types :: M.Map Ident RawType
+  { types                         :: M.Map Ident RawType
   , hasReturnStatementOccuredFlag :: Bool
   }
 
-emptyEnv = Env 
+emptyEnv = Env
   { types = M.fromList buildinMethodsSignatures
   , hasReturnStatementOccuredFlag = False
   }
@@ -26,7 +26,7 @@ buildinMethodsSignatures = [
 
 
 updateTypes :: Env -> [(Ident, RawType)] -> Env
-updateTypes env = foldl updateTupleType env
+updateTypes = foldl updateTupleType
 
 updateTupleType :: Env -> (Ident, RawType) -> Env
 updateTupleType env (name, newType) = updateType env name newType

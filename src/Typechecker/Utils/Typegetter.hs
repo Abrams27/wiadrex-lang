@@ -9,17 +9,17 @@ module Typechecker.Utils.Typegetter
   , assertOrThrowM
   ) where
 
-import Prelude
-import Control.Monad.Reader
-import Control.Monad.Except
-import Control.Monad.State
-import Data.List
-import Typechecker.Data.Environment
-import Typechecker.Data.Exceptions
-import Typechecker.Data.Types
-import Typechecker.Monads
-import Syntax.AbsWiadrexLang
-import qualified Typechecker.Utils.Common as CU
+import           Control.Monad.Except
+import           Control.Monad.Reader
+import           Control.Monad.State
+import           Data.List
+import           Prelude
+import           Syntax.AbsWiadrexLang
+import           Typechecker.Data.Environment
+import           Typechecker.Data.Exceptions
+import           Typechecker.Data.Types
+import           Typechecker.Monads
+import qualified Typechecker.Utils.Common     as CU
 
 
 expectTypesOrThrowM :: Typegetter a => BNFC'Position -> RawType -> a -> a -> EmptyTypegetterM
@@ -39,7 +39,7 @@ checkTypeOrThrowM env expectedType block executor = do
   parseCheckTypeResultM checkTypeResult
 
 parseCheckTypeResultM :: Either TypecheckingException () -> EmptyTypegetterM
-parseCheckTypeResultM (Right _) = pure ()
+parseCheckTypeResultM (Right _)        = pure ()
 parseCheckTypeResultM (Left exception) = throwError exception
 
 
@@ -48,7 +48,7 @@ getDefinedSymbolOrThrowM  position name callback = do
   env <- ask
   case getType env name of
     Just symbolType -> callback symbolType
-    Nothing -> throwError $ UndefinedSymbolException position name
+    Nothing         -> throwError $ UndefinedSymbolException position name
 
 
 getFunctionTypeOrThrowM :: Typegetter a => BNFC'Position -> [a] -> RawType -> TypegetterM
@@ -73,11 +73,11 @@ expectValidFunctionArgumentsOrThrowM position arguments = do
 
 
 assertTypeOrThrowM :: Eq a => a -> a -> TypecheckingException -> EmptyTypegetterM
-assertTypeOrThrowM expectedType actualType exception = assertOrThrowM isValidType exception
+assertTypeOrThrowM expectedType actualType = assertOrThrowM isValidType
   where
     isValidType = expectedType == actualType
 
 assertOrThrowM :: Bool -> TypecheckingException -> EmptyTypegetterM
-assertOrThrowM True _ = pure ()
+assertOrThrowM True _          = pure ()
 assertOrThrowM False exception = throwError exception
 

@@ -1,18 +1,18 @@
+{-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE TypeSynonymInstances #-}
-{-# LANGUAGE FlexibleInstances #-}
-module Evaluator.Evaluator 
+module Evaluator.Evaluator
   ( evalProgram
   ) where
 
-import Prelude
-import Evaluator.Data.Persistence
-import Evaluator.Data.Exceptions
-import Evaluator.Monads
-import Control.Monad.Except
-import Control.Monad.State
-import Syntax.AbsWiadrexLang
-import qualified Evaluator.Utils.Expr as ExprU
-import qualified Evaluator.Utils.Stmt as StmtU
+import           Control.Monad.Except
+import           Control.Monad.State
+import           Evaluator.Data.Exceptions
+import           Evaluator.Data.Persistence
+import           Evaluator.Monads
+import qualified Evaluator.Utils.Expr       as ExprU
+import qualified Evaluator.Utils.Stmt       as StmtU
+import           Prelude
+import           Syntax.AbsWiadrexLang
 
 
 evalProgram :: Program -> IO (Either RuntimeException Value)
@@ -161,9 +161,7 @@ instance Evaluator Expr where
   eval (EOr _ expr1 expr2) = ExprU.evalVBoolExpr (||) expr1 expr2
 
 
-  eval (EVar _ name) = do
-    pers <- get
-    pure $ getValue name pers
+  eval (EVar _ name) = gets $ getValue name
 
   eval (EApp _ name arguments) = ExprU.evalBuildinAppOrRegular name arguments $ do
     pers <- get
@@ -179,7 +177,7 @@ instance Evaluator Expr where
 
     modify $ putEnv functionEnv
     modify $ putValue name function
-    modify $ putReturnValue
+    modify putReturnValue
     mapM_ ExprU.putArgsToPers (zip3 functionArgs argVals argLocs)
 
     eval functionBlock
@@ -190,11 +188,5 @@ instance Evaluator Expr where
     modify $ putEnv env
     pure returnValue
 
-  eval (ELambda _ arguments _ block) = do
-    pers <- get
-    pure $ VFun arguments block (getEnv pers)
 
-
-
-
-
+  eval (ELambda _ arguments _ block) = gets (VFun arguments block . getEnv)

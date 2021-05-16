@@ -95,6 +95,7 @@ data RelOp' a = OLth a | OLE a | OGth a | OGE a | OEq a | ONe a
 newtype Ident = Ident String
   deriving (C.Eq, C.Ord, C.Show, C.Read, Data.String.IsString)
 
+
 -- | Start position (line, column) of something.
 
 type BNFC'Position = C.Maybe (C.Int, C.Int)

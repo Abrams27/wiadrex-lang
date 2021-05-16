@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d945e186679fb2aadaea03320a9139003e26170763632a395d74c3687d40d7df
+-- hash: 36a3b7213adf2e5edc6d2fe180ad343dce96c1af4c793ec5e70bbae6d55241cb
 
 name:           wiadrex-lang
 version:        0.1.0.0
@@ -24,7 +24,6 @@ source-repository head
 
 library
   exposed-modules:
-      ErrM
       Evaluator.Buildin.Functions
       Evaluator.Data.Exceptions
       Evaluator.Data.Persistence
@@ -35,10 +34,7 @@ library
       Interpreter
       Lexer.LexWiadrexLang
       Lexer.ParWiadrexLang
-      PrintWiadrexLang
-      SkelWiadrexLang
       Syntax.AbsWiadrexLang
-      TestWiadrexLang
       Typechecker.Data.Environment
       Typechecker.Data.Exceptions
       Typechecker.Data.Types

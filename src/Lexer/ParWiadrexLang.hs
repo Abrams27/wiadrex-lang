@@ -1010,7 +1010,7 @@ type Err = Either String
 
 happyError :: [Token] -> Err a
 happyError ts = Left $
-  "syntax error at " ++ tokenPos ts ++
+  "ERROR: syntax error at " ++ tokenPos ts ++
   case ts of
     []      -> []
     [Err _] -> " due to lexer error"
