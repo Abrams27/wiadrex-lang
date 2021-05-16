@@ -3,7 +3,7 @@ CABAL = cabal
 
 all:
 	${CABAL} build -j1
-	mv dist/build/interpreter interpreter
+	mv dist/build/interpreter/interpreter interpreter
 
 
 
