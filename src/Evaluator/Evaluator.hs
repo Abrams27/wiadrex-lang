@@ -130,7 +130,10 @@ instance Evaluator Expr where
 
   eval (EMul _ expr1 (OTimes _) expr2) = ExprU.evalVIntExpr (*) expr1 expr2
 
-  eval (EMul _ expr1 (ODiv _) expr2) = ExprU.evalVIntExpr quot expr1 expr2
+  eval (EMul position expr1 (ODiv _) expr2) = do
+    expr2Val <- eval expr2
+    if isIntEqual expr2Val 0 then throwError $ DivideByZeroException position else pure Dummy
+    ExprU.evalVIntExpr quot expr1 expr2
 
   eval (EMul _ expr1 (OMod _) expr2) = ExprU.evalVIntExpr mod expr1 expr2
 

@@ -1,0 +1,4 @@
+fun main(): Void {
+  printInt(1 / 0);
+  return;
+}

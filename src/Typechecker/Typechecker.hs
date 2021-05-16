@@ -28,7 +28,6 @@ instance Typechecker Program where
   checkTypeM _ (PProgram position inits) = do
       TCU.expectValidInitsNamesOrThrowM position inits
 
-      -- mapM_ updateEnvWithFunctionInitM inits
       mapM_ (checkTypeM Nothing) inits
 
     where

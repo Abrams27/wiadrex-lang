@@ -39,6 +39,9 @@ isTrue :: Value -> Bool
 isTrue (VBool True) = True
 isTrue _ = False
 
+isIntEqual :: Value -> Integer -> Bool
+isIntEqual (VInt val) expectedVal = val == expectedVal
+isIntEqual _ _ = False
 
 getFunctionEnv :: Value -> Env
 getFunctionEnv (VFun _ _ env) = env
