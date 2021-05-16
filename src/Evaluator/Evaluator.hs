@@ -25,7 +25,7 @@ instance Evaluator Program where
 
   eval (PProgram position inits) = do
     mapM_ eval inits
-    eval (EApp position (Ident "main") [])
+    eval $ EApp position (Ident "main") []
 
 
 

@@ -1,0 +1,4 @@
+fun main1(): Void {
+  printString("test");
+  return;
+}

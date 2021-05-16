@@ -29,6 +29,7 @@ instance Typechecker Program where
       TCU.expectValidInitsNamesOrThrowM position inits
 
       mapM_ (checkTypeM Nothing) inits
+      checkTypeM Nothing (SExp position (EApp position (Ident "main") []))
 
 
 

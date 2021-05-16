@@ -20,8 +20,7 @@ emptyEnv = Env
 buildinMethodsSignatures = [
   (Ident "printInt", RTFun [RTInt] RTVoid),
   (Ident "printBool", RTFun [RTBool] RTVoid),
-  (Ident "printString", RTFun [RTString] RTVoid),
-  (Ident "main", RTFun [] RTVoid)
+  (Ident "printString", RTFun [RTString] RTVoid)
   ]
 
 
