@@ -3,5 +3,6 @@ fun main(): Void {
     return parameter + 1;
   };
 
+  printInt(a(42));
   return;
 }

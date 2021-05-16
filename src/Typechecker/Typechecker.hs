@@ -28,7 +28,7 @@ instance Typechecker Program where
   checkTypeM _ (PProgram position inits) = do
       TCU.expectValidInitsNamesOrThrowM position inits
 
-      mapM_ updateEnvWithFunctionInitM inits
+      -- mapM_ updateEnvWithFunctionInitM inits
       mapM_ (checkTypeM Nothing) inits
 
     where
@@ -56,7 +56,7 @@ instance Typechecker Init where
 
     envWithFunction <- get
     let argumentsWithTypes = CU.getArgumentsWithTypes arguments
-    put $ updateTypes env argumentsWithTypes
+    put $ updateTypes envWithFunction argumentsWithTypes
     checkTypeM (Just rawReturnType) block
     blockEnv <- get
     TCU.assertOrThrowM (hasReturnStatementOccured blockEnv) (NoReturnStatementException position)

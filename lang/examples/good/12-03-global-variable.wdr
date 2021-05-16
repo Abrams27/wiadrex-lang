@@ -1,9 +1,11 @@
 fun test(): Int {
-  return 42;
+  return 1;
 }
 
+var a: Int = test();
+
 fun main(): Void {
-  printInt(test());
+  printInt(a);
 
   return;
 }

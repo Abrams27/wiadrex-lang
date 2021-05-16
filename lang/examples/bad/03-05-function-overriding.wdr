@@ -1,9 +1,3 @@
-fun main(): Void {
-  test("Hi");
-
-  return;
-}
-
 fun test(a: String): Void {
   printString(a);
 
@@ -12,6 +6,12 @@ fun test(a: String): Void {
 
 fun test(): Void {
   printString("string");
+
+  return;
+}
+
+fun main(): Void {
+  test("Hi");
 
   return;
 }

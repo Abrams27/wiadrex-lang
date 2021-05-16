@@ -1,9 +1,9 @@
+test(): Int {
+  return 42;
+}
+
 fun main(): Void {
   printInt(test());
 
   return;
-}
-
-test(): Int {
-  return 42;
 }

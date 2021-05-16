@@ -20,6 +20,8 @@ import Lexer.ParWiadrexLang   ( pProgram, myLexer )
 import PrintWiadrexLang ( Print, printTree )
 import SkelWiadrexLang  ()
 import Typechecker.Typechecker
+import Evaluator.Evaluator
+
 
 type Err        = Either String
 
@@ -46,11 +48,12 @@ executeTokens (Right tree) =
       putStrLn $ show err
       exitFailure
     Right _ -> do
-      putStrLn "Done"
-      exitSuccess
-
-
--- showTree :: (Show a, Print a) => a -> IO ()
--- showTree tree = do
---   putStrLn $ "\n[Abstract Syntax]\n\n" ++ show tree
---   putStrLn $ "\n[Linearized tree]\n\n" ++ printTree tree
+      res <- evalProgram tree
+      case res of
+        Left err -> do
+          putStrLn "Run failed"
+          putStrLn $ show err
+          exitFailure
+        Right _ -> do
+          putStrLn "Done\n================"
+          exitSuccess

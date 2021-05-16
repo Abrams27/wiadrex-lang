@@ -4,5 +4,10 @@ fun main(): Void {
   var c: Bool = False;
   var d: String = "Hi";
 
+  printInt(a);
+  printBool(b);
+  printBool(c);
+  printString(d);
+
   return;
 }

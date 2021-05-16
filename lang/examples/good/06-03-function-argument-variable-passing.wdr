@@ -1,11 +1,14 @@
-fun main(): Void {
-  test("Hi");
+fun test(var string: String): Void {
+  printString(string);
+  string = "Hello";
 
   return;
 }
 
-fun test(var string: String): Void {
-  printString(string);
+fun main(): Void {
+  var a: String = "Hi";
+  test(a);
+  printString(a);
 
   return;
 }

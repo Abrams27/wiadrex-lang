@@ -1,15 +1,19 @@
 fun main(): Void {
   var a: Int = 42;
   a = 43;
+  printInt(a);
 
   var b: Bool = True;
   b = False;
+  printBool(b);
 
   var c: Bool = False;
   c = True;
+  printBool(c);
 
   var d: String = "Hi";
   d = "Hello";
+  printString(d);
 
   return;
 }

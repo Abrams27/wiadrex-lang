@@ -1,6 +1,8 @@
 fun main(): Void {
-  while(True) {
-    printString("infinity");
+  var a: Int = 1;
+  while(a <= 3) {
+    printInt(a);
+    a++;
   }
 
   return;

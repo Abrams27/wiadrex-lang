@@ -1,11 +1,11 @@
-fun main(): Void {
-  test("Hi");
+fun test(string: String): Void {
+  printString(string);
 
   return;
 }
 
-fun test(string: String): Void {
-  printString(string);
+fun main(): Void {
+  test("Hi");
 
   return;
 }

@@ -1,7 +1,10 @@
 fun main(): Void {
   var a: Int = 42;
+  printInt(a);
   a--;
+  printInt(a);
   a++;
+  printInt(a);
 
   return;
 }
