@@ -1,6 +1,6 @@
-# MIMUW-S6-JPP-wiadrex-lang
+# wiadrex lang
 
-Wiadrex lang interpreter
+Wiadrex lang interpreter in haskell.
 
 
 ## Building and running
